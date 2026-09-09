@@ -99,7 +99,7 @@ export default function Login() {
           result = await supabase.auth.signUp({
             email,
             password,
-            options: { emailRedirectTo: window.location.origin },
+            options: { emailRedirectTo: `${window.location.origin}${import.meta.env.BASE_URL}` },
           })
         } else {
           result = await supabase.auth.signInWithPassword({ email, password })
@@ -156,7 +156,7 @@ export default function Login() {
         <div className="mb-6 text-center">
           <Link to="/" className="inline-flex items-center">
             <span className="flex h-12 items-center overflow-hidden rounded-sm bg-white px-2.5 shadow-lg shadow-black/10 border border-black/5">
-              <img src="/logo.jpg" alt="Belayo logo" className="h-10 max-w-[10rem] object-contain" />
+              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Belayo logo" className="h-10 max-w-[10rem] object-contain" />
             </span>
           </Link>
           <h1 className="mt-5 text-3xl font-bold tracking-tight text-[#17255A]">{heading}</h1>

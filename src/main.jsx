@@ -7,7 +7,7 @@ import { AuthProvider } from './lib/authContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/Beelayo">
       <AuthProvider>
         <App />
       </AuthProvider>

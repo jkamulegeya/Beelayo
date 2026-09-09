@@ -23,7 +23,7 @@ export default function Layout() {
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           <Link to="/app" className="flex items-center gap-2">
             <img
-              src={location.pathname.startsWith('/app') ? '/logo-nav-word.png' : '/logo-nav.png'}
+              src={location.pathname.startsWith('/app') ? `${import.meta.env.BASE_URL}logo-nav-word.png` : `${import.meta.env.BASE_URL}logo-nav.png`}
               alt="Belayo"
               className="h-9 max-w-[10rem] object-contain"
             />

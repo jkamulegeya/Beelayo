@@ -9,8 +9,6 @@ import { deletePoster } from '../lib/storage.js'
 import { planLimit, effectivePlan } from '../lib/payments.js'
 import UpgradeModal from '../components/UpgradeModal.jsx'
 
-const origin = window.location.origin
-
 export default function EventDetails() {
   const { user, account, refreshAccount } = useAuth()
   const { id } = useParams()
@@ -23,7 +21,7 @@ export default function EventDetails() {
   const [deleteError, setDeleteError] = useState('')
   const [upgradeOpen, setUpgradeOpen] = useState(false)
   const qrBoxRef = useRef(null)
-  const link = `${origin}/e/${event?.slug || ''}`
+  const link = `${window.location.origin}${import.meta.env.BASE_URL}e/${event?.slug || ''}`
 
   useEffect(() => {
     loadData()

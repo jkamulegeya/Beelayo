@@ -41,8 +41,8 @@ export function formatUgx(amount) {
 export const MOMO_NETWORKS = ['MTN Mobile Money', 'Airtel Money']
 
 export const MOMO_LOGOS = {
-  'MTN Mobile Money': '/mtn.png',
-  'Airtel Money': '/airtel.jpg',
+  'MTN Mobile Money': `${import.meta.env.BASE_URL}mtn.png`,
+  'Airtel Money': `${import.meta.env.BASE_URL}airtel.jpg`,
 }
 
 export function isValidUgPhone(phone) {

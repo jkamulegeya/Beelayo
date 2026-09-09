@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-function Logo({ className = '', src = '/logo.jpg' }) {
+function Logo({ className = '', src = `${import.meta.env.BASE_URL}logo.jpg` }) {
   return (
     <span className={`inline-flex items-center ${className}`}>
       <img src={src} alt="Belayo logo" className="h-10 max-w-[11rem] object-contain" />
@@ -336,7 +336,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
             <div className="max-w-xs">
-              <Logo src="/logo-footer.png" />
+              <Logo src={`${import.meta.env.BASE_URL}logo-footer.png`} />
               <p className="mt-3 text-sm leading-relaxed text-white/60">
                 Plan less, celebrate more. Used by all individuals and event hosts across Uganda &amp; East Africa.
               </p>
