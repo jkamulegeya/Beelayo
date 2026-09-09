@@ -26,8 +26,8 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL || 'https://fqynclpffqmcppuqxdiv.supabase.co' }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY || 'sb_publishable_bZ40bmnkz9P6jwsfBGX1HQ_s4wfQmsX' }}
+          VITE_SUPABASE_URL: https://fqynclpffqmcppuqxdiv.supabase.co
+          VITE_SUPABASE_ANON_KEY: sb_publishable_bZ40bmnkz9P6jwsfBGX1HQ_s4wfQmsX
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
