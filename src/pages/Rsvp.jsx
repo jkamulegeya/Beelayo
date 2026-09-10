@@ -63,8 +63,13 @@ export default function Rsvp() {
   const capacity = capacityLimit
   const slotsLeft = capacity - used
   const isFull = slotsLeft <= 0
+  const eventClosed = !!event?.event_date && Date.now() > new Date(event.event_date).getTime()
 
   const submit = async () => {
+    if (eventClosed) {
+      setError('This invitation has closed and is no longer accepting RSVPs.')
+      return
+    }
     if (!name.trim() || !response) {
       setError('Please enter your name and select a response.')
       return
@@ -217,9 +222,24 @@ export default function Rsvp() {
           {event.description && <p className="mt-3 text-sm text-slate-600">{event.description}</p>}
         </div>
 
-        <Card className="mx-4 mt-6 p-5 sm:mx-0 sm:p-6">
-          <div className="mb-4 text-center">
-            <p className="text-sm font-semibold text-slate-700">Will you attend?</p>
+        {eventClosed ? (
+          <Card className="mx-4 mt-6 p-8 text-center sm:mx-0">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#F6E0E0]">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A01111" strokeWidth="2">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 3" />
+              </svg>
+            </div>
+            <h2 className="text-xl font-bold text-[#17255A]">This invitation has closed</h2>
+            <p className="mt-2 text-sm leading-relaxed text-slate-500">
+              RSVPs are no longer being accepted for this event. If you have questions, please contact the
+              host directly.
+            </p>
+          </Card>
+        ) : (
+          <Card className="mx-4 mt-6 p-5 sm:mx-0 sm:p-6">
+            <div className="mb-4 text-center">
+              <p className="text-sm font-semibold text-slate-700">Will you attend?</p>
             {isFull ? (
               <p className="mt-1 flex items-center justify-center gap-1 text-xs font-medium text-neutral-800">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -349,7 +369,8 @@ export default function Rsvp() {
               {submitting ? 'Submitting…' : 'Submit RSVP'}
             </Button>
           </div>
-        </Card>
+          </Card>
+        )}
       </div>
     </div>
   )

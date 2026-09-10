@@ -4,7 +4,7 @@ import { QRCodeSVG } from 'qrcode.react'
 import { supabase } from '../lib/supabaseClient.js'
 import { useAuth } from '../lib/authContext.jsx'
 import { Card, Badge, Spinner } from '../components/ui.jsx'
-import { formatEventDate } from '../lib/utils.js'
+import { formatEventDate, isEventExpired } from '../lib/utils.js'
 import { deletePoster } from '../lib/storage.js'
 import { planLimit, effectivePlan } from '../lib/payments.js'
 import UpgradeModal from '../components/UpgradeModal.jsx'
@@ -169,6 +169,19 @@ export default function EventDetails() {
       <div className="print:hidden mb-2">
         <Link to="/app" className="text-xs text-[#BD1E1E] hover:underline">← Back to events</Link>
       </div>
+
+      {isEventExpired(event) && (
+        <div className="print:hidden mb-3 flex items-start gap-2 rounded-sm border border-[#F6E0E0] bg-[#FBEEEE] px-3 py-2 text-xs font-medium text-[#A01111]">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mt-0.5 shrink-0">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v5l3 3" />
+          </svg>
+          <p>
+            This event has ended and is no longer accepting RSVPs. It will be deleted automatically 24
+            hours after its date. You can still view and export the guest list below.
+          </p>
+        </div>
+      )}
 
       <div className="print:hidden">
       <div className="overflow-hidden rounded-sm border border-slate-200 bg-white shadow-sm">
